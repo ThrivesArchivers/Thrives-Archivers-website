@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome - Thrives Archivers</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    section {
+      padding: 20px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .testimonial {
+      background-color: white;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    #testimonials {
+      margin-top: 30px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    #contact-info {
+      background-color: #fff;
+      padding: 20px;
+      margin-top: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #333;
+      color: white;
+    }
+
+    .social-icon {
+      width: 30px;
+      margin: 0 10px;
+    }
+
+    .error {
+      color: red;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+  </style>
+
+  <script>
+    // Function to dynamically load content when login button is clicked
+    function loadContent() {
+        const dynamicContent = document.getElementById('dynamicContent');
+        dynamicContent.innerHTML = `
+            <p>To access the resources, please log in.</p>
+            <form id="login-form">
+                <label for="username">Username:</label>
+                <input type="text" id="username" placeholder="Enter your username" required><br><br>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+                <button type="button" id="toggle-password" class="toggle-btn">Show</button><br><br>
+
+                <button type="submit">Login</button>
+            </form>
+            <p>Don't have an account? <a href="create-account.html">Create Account</a></p>
+        `;
+
+        // Adding event listener for form submission
+        document.getElementById('login-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Clear previous error messages
+            document.querySelectorAll('.error').forEach(el => el.remove());
+
+            if (!username || !password) {
+                if (!username) {
+                    const usernameError = document.createElement('p');
+                    usernameError.textContent = 'Please enter a username.';
+                    usernameError.classList.add('error');
+                    document.getElementById('username').after(usernameError);
+                }
+                if (!password) {
+                    const passwordError = document.createElement('p');
+                    passwordError.textContent = 'Please enter a password.';
+                    passwordError.classList.add('error');
+                    document.getElementById('password').after(passwordError);
+                }
+                return;
+            }
+
+            // Check credentials (for demo purposes, predefined credentials are used)
+            if (username === "admin" && password === "password") {
+                alert('Login Successful!');
+                // Redirect to dashboard or home page after successful login
+                window.location.href = "dashboard.html";
+            } else {
+                const error = document.createElement('p');
+                error.textContent = 'Username or Password is incorrect.';
+                error.classList.add('error');
+                document.getElementById('login-form').appendChild(error);
+            }
+        });
+
+        // Toggle password visibility
+        const togglePasswordBtn = document.getElementById('toggle-password');
+        togglePasswordBtn.addEventListener('click', function () {
+            const passwordInput = document.getElementById('password');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                togglePasswordBtn.textContent = 'Hide';
+            } else {
+                passwordInput.type = 'password';
+                togglePasswordBtn.textContent = 'Show';
+            }
+        });
+    }
+  </script>
+</head>
+
+<body>
+  <header>
+    <h1>Welcome to Thrives Archivers</h1>
+  </header>
+
+  <section>
+    <p>Discover Resources to Help You Succeed!</p>
+    <p>The purpose of Thrives Archivers is to provide simplified Natural Science materials to help students excel in their studies, without the difficulty. Our platform offers easy-to-understand resources and tools that make learning engaging and effective.</p>
+    <button onclick="loadContent()">Login</button>
+    <div id="dynamicContent"></div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials">
+    <h2>What Our Students Are Saying</h2>
+    <div>
+      <div class="testimonial">
+        <h3>John Chilabwe (Mulungushi University)</h3>
+        <p>"Thrives Archivers has provided me with the best resources to understand my subjects better!"</p>
+      </div>
+      <div class="testimonial">
+        <h3>Elizabeth Mwewa (CBU)</h3>
+        <p>"The lessons are well-structured and have helped me stay on track with my studies."</p>
+      </div>
+      <div class="testimonial">
+        <h3>Lewis Mwape (Mukuba University)</h3>
+        <p>"I can easily find notes and content that makes studying a lot easier."</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact-info">
+    <h2>Contact Us</h2>
+    <p>If you have any questions or need assistance, feel free to contact us:</p>
+    <ul>
+      <li>WhatsApp: <a href="https://wa.me/260762514399" target="_blank">0762514399</a></li>
+      <li>Email: <a href="mailto:thrivesarchivers@gmail.com">thrivesarchivers@gmail.com</a></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Thrives Archivers</p>
+    <div>
+      <a href="https://youtube.com/@thrivesarchivers?si=ys04xiJmwagBHWAV" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube" class="social-icon">
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=61565387636780" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" class="social-icon">
+      </a>
+    </div>
+  </footer>
+</body>
+</html>
